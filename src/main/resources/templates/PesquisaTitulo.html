@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://wwww.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <meta charset="UTF-8">
+    <title>Listar Registros</title>
+</head>
+<body>
+	<nav class ="navbar navbar-dar bg-primary">
+		<a class="navbar-brand">
+			<img src="/images/ifmtlogo.png" width="50" height="50" alt="IFMT"/>
+		</a>
+	</nav>
+
+	<div class="card">
+		<div class="card-header tux-titulopanel">
+			<span class="tux-titulo-panel">Novo Titulo</span>
+		</div>
+		<div class="card-body">
+
+		</div>
+	</div>
+    <table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th scope="col" class="text-center">#</th>
+				<th scope="col">Nome do Adotante</th>
+				<th scope="col">Animal Adotado</th>
+				<th scope="col" class="text-right">Raça do Animal</th>
+				<th scope="col" class="text-center">Idade do Animal</th>
+				<th scope="col" class="text-center">Status do Animal</th>
+				<th scope="col" class="text-center">Data de Adoção</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr scope="row" th:each="titulo : ${titulos}">
+				<td scope="col" class="text-center" th:text="${titulo.id}"></td>
+				<td scope="col" th:text="${titulo.nomeAdotante}"></td>
+				<td scope="col" th:text="${titulo.animal}"></td>
+				<td scope="col" class="text-left" th:text="${titulo.racaAdotada}"></td>
+				<td scope="col" class="text-right" th:text="${titulo.idade}"></td>
+				<td scope="col" class="text-center">
+					<span class="badge" th:text="${titulo.status.descricao}" th:classappend="${titulo.vacinado ? 'badge-danger' : 'badge-success'}"></span>
+				</td>
+				<td scope="col" class="text-center" th:text="${{titulo.dataDeAdocao}}"></td>
+				<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum Registro Encontrado</td>
+				<td scope="col"></td>
+			</tr>
+		</tbody>
+	</table>
+    
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
